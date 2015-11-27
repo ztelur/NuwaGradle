@@ -2,6 +2,7 @@ package cn.jiajixin.nuwa.util
 
 import org.apache.commons.io.FileUtils
 import org.gradle.api.InvalidUserDataException
+import org.gradle.api.Nullable
 import org.gradle.api.Project
 
 /**
@@ -22,7 +23,13 @@ class NuwaFileUtils {
         FileUtils.writeByteArrayToFile(file, bytes)
     }
 
-    public static File getFileFromProperty(Project project, String property) {
+    /**
+     * 从project对象中获得相应属性，并获得其表示路径的File
+     * @param project
+     * @param property
+     * @return
+     */
+    public static @Nullable File getFileFromProperty(Project project, String property) {
         def file
         if (project.hasProperty(property)) {
             file = new File(project.getProperties()[property])
